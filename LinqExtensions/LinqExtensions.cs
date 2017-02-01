@@ -56,11 +56,11 @@ namespace Linq.Extensions
 
 			var orderedCollection = takeMin
 				? groupedCollection.Select(group => group
-					.OrderBy(orderFunc))
+					.OrderBy(orderFunc).FirstOrDefault())
 				: groupedCollection.Select(group => group
-					.OrderByDescending(orderFunc));
+					.OrderByDescending(orderFunc).FirstOrDefault());
 
-			return orderedCollection.FirstOrDefault();
+			return orderedCollection;
 		}
 	}
 }
