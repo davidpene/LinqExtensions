@@ -46,15 +46,15 @@ namespace LinqExtensions
 		///  <param name="collection"></param>
 		///  <param name="groupFunc"></param>
 		///  <param name="orderFunc"></param>
-		/// <param name="orderByAsc"> defaults to false </param>
+		/// <param name="takeMin"> defaults to false </param>
 		/// <returns> IEnumerable </returns>
 		public static IEnumerable<T> Distinct<TKey, TOrder, T>(this IEnumerable<T> collection, Func<T, TKey> groupFunc,
-			Func<T, TOrder> orderFunc, bool orderByAsc = false)
+			Func<T, TOrder> orderFunc, bool takeMin = false)
 		{
 			var groupedCollection = collection
 				.GroupBy(groupFunc);
 
-			var orderedCollection = orderByAsc
+			var orderedCollection = takeMin
 				? groupedCollection.Select(group => group
 					.OrderBy(orderFunc))
 				: groupedCollection.Select(group => group
