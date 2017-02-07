@@ -62,5 +62,19 @@ namespace Linq.Extensions
 
 			return orderedCollection;
 		}
+
+		/// <summary>
+		/// Determines if a collection contains a value based on some selection function
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <typeparam name="TKey"></typeparam>
+		/// <param name="collection"></param>
+		/// <param name="selectFunc"></param>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static bool Contains<T, TKey>(this IEnumerable<T> collection, Func<T, TKey> selectFunc, TKey value)
+		{
+			return collection.Select(selectFunc).Contains(value);
+		}
 	}
 }

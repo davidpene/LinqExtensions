@@ -60,5 +60,17 @@ namespace Linq.Extensions.Tests
 			Assert.True(distinctItems.Contains(new Paper(1, 1)));
 			Assert.True(distinctItems.Contains(new Paper(1, 3)));
 		}
+
+		[Theory]
+		[InlineData(1, 1, true)]
+		[InlineData(1, 2, false)]
+		[InlineData(-11, -11, true)]
+		[InlineData(-1, 1, false)]
+		public void Contains_Test(int actualHeight, int expectedHeight, bool shouldBeTrue)
+		{
+			var list = new[] {new Paper(0, actualHeight),};
+
+			Assert.Equal(shouldBeTrue, list.Contains(paper => paper.Height, expectedHeight));
+		}
 	}
 }
