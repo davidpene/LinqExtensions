@@ -23,10 +23,10 @@ namespace Linq.Extensions.Tests
 		{
 			var list = new[] {new Paper(1, 1), new Paper(1, 3), new Paper(1, 3)};
 
-			var distinctItems = list.Distinct(item => item.Height).ToList();
+			var distinctItems = list.Distinct(item => item.Height);
 
 			// should contain only 2 items - Paper(1,1) and Paper(1,3)
-			Assert.Equal(2, distinctItems.Count);
+			Assert.Equal(2, distinctItems.Count());
 			Assert.True(distinctItems.Contains(new Paper(1, 1)));
 			Assert.True(distinctItems.Contains(new Paper(1, 3)));
 		}

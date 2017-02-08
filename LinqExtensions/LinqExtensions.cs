@@ -31,8 +31,7 @@ namespace Linq.Extensions
 		/// <returns> IEnumerable </returns>
 		public static IEnumerable<T> Distinct<TKey, T>(this IEnumerable<T> collection, Func<T, TKey> groupFunc)
 		{
-			var knownElements = new HashSet<TKey>();
-			return collection.Where(element => knownElements.Add(groupFunc(element)));
+			return collection.GroupBy(groupFunc).Select(group => group.First());
 		}
 
 		///  <summary>
